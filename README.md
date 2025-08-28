@@ -245,8 +245,8 @@ rm -rf cache_data/*/mp3/* cache_data/*/mp3_temp/* cache_data/*/mp4/* cache_data/
 
 1. 启动main.py
 2. 在暴露的127.0.0.1:5000端口页面点击数字人管理,
-3. 点击新增，输入名字和声音（声音目前支持阿里的男zhifeng_emo和女zhimiao_emo，如果想增加其他声音需要在阿里的tts查看支持的声音，参照<https://help.aliyun.com/zh/isi/developer-reference/overview-of-speech-synthesis?spm=a2c4g.11186623.help-menu-30413.d_3_1_0_0.73097a17SUfpT0&scm=20140722.H_84435._.OR_help-T_cn~zh-V_1）>
-4.上传一段无动作视频和一段有动作的视频即可添加角色成功。
+3. 点击新增，输入名字和声音（声音目前支持阿里的男zhifeng_emo和女zhimiao_emo，如果想增加其他声音需要在阿里的tts查看支持的声音，参照<https://help.aliyun.com/zh/isi/developer-reference/overview-of-speech-synthesis?spm=a2c4g.11186623.help-menu-30413.d_3_1_0_0.73097a17SUfpT0&scm=20140722.H_84435._.OR_help-T_cn~zh-V_1>）
+4. 上传一段无动作视频和一段有动作的视频即可添加角色成功。
 
 ## 通信协议
 
