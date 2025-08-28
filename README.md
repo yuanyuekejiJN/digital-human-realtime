@@ -128,6 +128,7 @@ pip install -r requirements.txt
 # 其中yywav2lip.pth是用于音频驱动的唇形同步技术的模型。需要放置在目录 resource/checkpoints
 # model_9.pkl和model_10.pkl是 是数字人面部数据预处理文件预处理的数字人面部关键点数据文件，
 # 存储了视频帧中的面部关键点信息，用于实现音频驱动的唇形同步  需要分别放置在目录cache_data/9/model 和 cache_data/10/model
+# yywav2lip.pth必须进行下载并放入对应的目录，model_9.pkl为默认的形象文件模型，同样必须下载并且放置在对应目录
 ```
 
 
