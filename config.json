@@ -1,0 +1,48 @@
+{
+    "attribute": {
+        "age": "",
+        "birth": "",
+        "cache_model": 2,
+        "cache_model_content": "",
+        "cache_model_content_r": "",
+        "chufachi": "\u4f60\u597d",
+        "chufachi_r": "nihao",
+        "constellation": "",
+        "contact": "",
+        "gender": "",
+        "hobby": "",
+        "huanxingchi": "\u4f60\u597d",
+        "huanxingchi_r": "nihao",
+        "job": "",
+        "name": "",
+        "open_chufachi": true,
+        "open_huanxingchi": true,
+        "voice": "",
+        "zodiac": ""
+    },
+    "interact": {
+        "QnA": "qa_demo.xlsx",
+        "maxInteractTime": 15,
+        "perception": {
+            "chat": 0,
+            "follow": 0,
+            "gift": 0,
+            "indifferent": 0,
+            "join": 0
+        },
+        "playSound": true,
+        "visualization": false
+    },
+    "items": [],
+    "source": {
+        "liveRoom": {
+            "enabled": false,
+            "url": ""
+        },
+        "record": {
+            "channels": 0,
+            "device": "\u9ea6\u514b\u98ce (UGREEN CM564 USB Audio )",
+            "enabled": true
+        }
+    }
+}

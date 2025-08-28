@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- index.css -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    </link>
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+    <!-- 引入element-ui样式 -->
+    <!-- <link rel="stylesheet" href="./css/element.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/element.css') }}">
+    </link>
+<!--    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">-->
+    <link rel="stylesheet" href="/static/css/theme-chalk.css">
+    <link rel="stylesheet" href="/static/css/fontawesome.css">
+    <script src="/static/live2d/autoload.js"></script>
+
+    <title>元岳数字人</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="!isQuestion&&!isShuziren" class="main">
+            <div class="title">
+                <h2>元岳科技数字人</h2>
+            </div>
+            <div class="main_box">
+                <div class="left">
+                    <div class="left_top">
+                        <p class="left_top_p">人设：</p>
+                        <div class="character">
+                            <div class="character_top">
+                                <div class="character_left">
+                                    <ul>
+                                        <li>
+                                            <p>姓名：</p>
+                                            <el-input v-model="attribute_name" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>性别：</p>
+                                            <el-input v-model="attribute_gender" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>年龄：</p>
+                                            <el-input v-model="attribute_age" placeholder="请输入内容"></el-input>
+                                        </li>
+
+                                        <li>
+                                            <p>出生地：</p>
+                                            <el-input v-model="attribute_birth" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>生肖：</p>
+                                            <el-input v-model="attribute_zodiac" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>星座：</p>
+                                            <el-input v-model="attribute_constellation" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>职业：</p>
+                                            <el-input v-model="attribute_job" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>联系方式：</p>
+                                            <el-input v-model="attribute_contact" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <p>喜好：</p>
+                                            <el-input v-model="attribute_hobby" placeholder="请输入内容"></el-input>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="character_right">
+                                    <ul style="width: 370px;">
+                                        <li >
+                                            <p>Q&A文件：</p>
+                                            <el-input v-model="interact_QnA" placeholder="请输入内容"></el-input>
+                                        </li>
+                                        <li>
+                                            <h4>缓存配置:<br/>多个关键字用逗号，分开</h4>
+                                        </li>
+
+                                        <li>
+                                            <p>关键字：</p>
+                                            <el-input
+                                              type="textarea"
+                                              :autosize = "{ minRows: 2}"
+                                              placeholder="请输入内容"
+                                              v-model="cache_model_content"
+
+                                              >
+                                            </el-input>
+                                        </li>
+                                        <br/>
+                                        <li>
+                                            <p>缓存模式：</p>
+                                            <el-select v-model="cache_model" placeholder="请选择" style="width: 100%">
+                                                <el-option v-for="item in cache_model_list" :key="item.value"
+                                                    :label="item.name" :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                       </li>
+                                       <br/>
+<!--                                        <li>-->
+<!--                                            <p>使用面板播放：</p>-->
+<!--                                           <p style="text-align: left;" v-if="play_sound_enabled">是</p>-->
+<!--                                           <p style="text-align: left;" v-else>否</p>-->
+<!--                                        </li>-->
+
+{#                                        <li>#}
+{#                                            <p>声音选择：{{attribute_voice}}</p>#}
+{#                                            <el-select v-model="attribute_voice" placeholder="请选择">#}
+{#                                                <el-option v-for="item in voice_list" :key="item.value"#}
+{#                                                    :label="item.label" :value="item.value">#}
+{#                                                </el-option>#}
+{#                                            </el-select>#}
+{#                                        </li>#}
+{#                                        <br>#}
+{#                                        <li>#}
+{#                                            <p>敏感度：</p>#}
+{#                                            <el-slider v-model="interact_perception_follow"></el-slider>#}
+{#                                        </li>#}
+{#                                       #}
+{#                                        <br>#}
+<!--                                        <li >-->
+<!--                                             <el-button style="margin-left: 55px;width: 135px;"  type="success"  class="btn_open"-->
+<!--                                             @click="postControlEyes()"><i class="fas fa-eye"></i> yuanyue Eyes</el-button>-->
+<!--                                        </li>-->
+<!--                                        <li >-->
+<!--                                             <el-button style="margin-left: 55px;width: 135px;"  type="success"  class="btn_open"-->
+<!--                                             @click="isQuestion=true;getQuestionList()"><i class="fas fa-eye"></i> yuanyue Eyes</el-button>-->
+<!--                                        </li>-->
+                                         <li >
+                                             <div style="padding: 10px;
+                                                         width: 100%;
+                                                         border-radius: 4px;
+                                                        border: 1px solid  #237FE7;
+                                                        font-size: 18px;
+                                                        text-align: center;
+                                                        color: #237FE7;
+                                                        "
+                                                  @click="isQuestion=true;getQuestionList()"
+                                             >
+                                                 常见问题管理
+                                             </div>
+                                        </li>
+                                        <li style="margin-top: 30px">
+                                             <div style="padding: 10px;
+                                                         width: 100%;
+                                                         border-radius: 4px;
+                                                        border: 1px solid  #237FE7;
+                                                        font-size: 18px;
+                                                        text-align: center;
+                                                        color: #237FE7;
+                                                        "
+                                                  @click="isShuziren=true;getShuzirenList()"
+                                             >
+                                                 数字人管理
+                                             </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="left_box">
+                        <p>&nbsp;</p>
+                        <div class="source">
+                            <ul>
+                                
+                                <li class="url">
+                                    <el-switch v-model="source_record_enabled" active-color="#409EFF"
+                                        inactive-color="#ff4949">
+                                    </el-switch>
+                                    <p>麦克风</p>
+                                    <el-select v-model="source_record_device" placeholder="请选择">
+                                        <el-option v-for="item in device_list" :key="item.value" :label="item.label"
+                                            :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </li>
+                                 <li class="url">
+                                    <el-switch v-model="open_huanxingchi" active-color="#409EFF"
+                                        inactive-color="#ff4949">
+                                    </el-switch>
+                                    <p>唤醒词</p>
+                                    <el-input v-model="huanxingchi" placeholder="请输入内容"></el-input>
+
+                                </li>
+<!--                                 <li class="url">-->
+<!--                                    <el-switch v-model="open_chufachi" active-color="#409EFF"-->
+<!--                                        inactive-color="#ff4949">-->
+<!--                                    </el-switch>-->
+<!--                                    <p>触发词</p>-->
+<!--                                    <el-input v-model="chufachi" placeholder="请输入内容"></el-input>-->
+<!--                                </li>-->
+                                <li class="url">
+
+                                    <p style="margin-left: 40px">消 息</p>
+                                    <el-input v-model="panel_msg" :disabled="true"></el-input>
+                                </li>
+                                <li class="but">
+                                    <el-button v-if="live_state == 1" type="success" class="btn_close"
+                                        style="width:200px" @click=postStopLive()>关闭（运行中）</el-button>
+                                    <el-button v-else-if="live_state == 2" type="primary" plain disabled
+                                        style="width:200px">正在开启...</el-button>
+                                    <el-button v-else-if="live_state == 3" type="success" plain disabled
+                                        style="width:200px">正在关闭...</el-button>
+                                    <el-button v-else type="primary" style="width:200px" class="btn_open"
+                                        @click=postStartLive()>开启</el-button>
+                                    <el-button type="button" style="width:200px" @click=postData()>保存配置</el-button>
+                                </li>
+                                <li class="p_red" >
+                                    <p v-if="is_connect" style="color: #67c23a;"> 数字人：已连接 </p>
+                                    <p v-else > 数字人：未连接 </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right_main">
+                        <div class="container">
+                            <div class="content">
+                       
+                                <div v-for="item in msg_list">
+                                <div class="item item-center"><span>[[item.timetext]]</span></div>
+
+                                <div class="item item-left" v-if="item.type == 'fay'">
+                                    <div class="avatar"><img src="{{ url_for('static',filename='logo.png') }}" />
+                                    </div>
+                                    <div class="bubble bubble-left">[[item.content]]
+                                    </div>
+                                </div>
+                                <div class="item item-right" v-else>
+                                    <div class="bubble bubble-right">[[item.content]]</div>
+                                    <div class="avatar"><img src="{{ url_for('static',filename='from.jpg') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                                
+                          
+
+                             
+                              
+                            </div>
+                            <div class="input-area">
+                                <textarea v-model="send_msg" name="text" id="textarea" placeholder="点此发送内容..."></textarea>
+                                <div class="button-area">
+                                    <button id="send-btn" @click="send(1)">Enter</button>
+                                    
+                                    <!-- <button id="send-btn" @click="send(2)" style="margin-left: 25px;">ChatGPT</button> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="isQuestion" class="question" style="padding: 20px 40px;height: 100vh;display: flex;flex-direction: column;box-sizing: border-box">
+
+            <div style="display: flex;justify-content: space-between">
+                <div style="display: flex;padding: 5px 16px;justify-content: center;align-items: center;border-radius: 4px;
+background:  #409EFF;font-size: 14px;color: white;width: fit-content;margin-bottom: 20px" @click="isQuestion=false">返回</div>
+                <div style="display: flex;padding: 5px 16px;justify-content: center;align-items: center;border-radius: 4px;
+background:  #409EFF;font-size: 14px;color: white;width: fit-content;margin-bottom: 20px" @click="dialogFormVisible=true;is_edit= false;question={}">新增</div>
+            </div>
+            <el-table
+                :data="question_list"
+                border
+                :header-cell-style="{ backgroundColor: '#F5F7FA',   textAlign: 'center', color:'#909399' }"
+                   :cell-style="{textAlign: 'center'}"
+                        style="flex: unset"
+                        >
+                <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="180"style="width: 100%;background: red">
+                </el-table-column>
+                <el-table-column
+                  prop="question"
+                  label="问题"
+                  width="180">
+                </el-table-column>
+                <el-table-column
+                  prop="answer"
+                  label="答案">
+                </el-table-column>
+                <el-table-column
+                  label="操作">
+                    <template slot-scope="scope">
+                    <el-button @click="edite_q(scope.row)" type="text" size="small">编辑</el-button>
+                    <el-button @click="del_q(scope.row)" type="text" size="small">删除</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+                        <div style="flex: 1"></div>
+                        <el-pagination
+                          @size-change="handleSizeChange"
+                          @current-change="handleCurrentChange"
+                          :current-page="current_page"
+                          :page-sizes="[10, 20, 30, 40]"
+                          :page-size="page_size"
+                          layout="total, sizes, prev, pager, next, jumper"
+                          style="text-align: center"
+                          :total="question_count">
+                        </el-pagination>
+
+
+            <el-dialog :title="is_edite?'编辑':'新增'" :visible.sync="dialogFormVisible">
+              <el-form :model="question">
+                <el-form-item label="问题：" >
+                  <el-input v-model="question.question" ></el-input>
+                </el-form-item>
+                <el-form-item label="答案：" >
+                   <el-input type="textarea" v-model="question.answer"></el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="add_question();">确 定</el-button>
+              </div>
+            </el-dialog>
+        </div>
+        <div v-if="isShuziren" class="question" style="padding: 20px 40px;height: 100vh;display: flex;flex-direction: column;box-sizing: border-box">
+
+            <div style="display: flex;justify-content: space-between">
+                <div style="display: flex;padding: 5px 16px;justify-content: center;align-items: center;border-radius: 4px;
+background:  #409EFF;font-size: 14px;color: white;width: fit-content;margin-bottom: 20px" @click="isShuziren=false">返回</div>
+                <div style="display: flex;padding: 5px 16px;justify-content: center;align-items: center;border-radius: 4px;
+background:  #409EFF;font-size: 14px;color: white;width: fit-content;margin-bottom: 20px" @click="dialogFormVisible=true;is_edit_shuziren = false;shuziren={}">新增</div>
+            </div>
+            <el-table
+                :data="shuziren_list"
+                border
+                :header-cell-style="{ backgroundColor: '#F5F7FA',   textAlign: 'center', color:'#909399' }"
+                   :cell-style="{textAlign: 'center'}"
+                        style="flex: unset"
+                        >
+                <el-table-column
+                  prop="id"
+                  label="ID"
+                  width="180"style="width: 100%;background: red">
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="名字"
+                  width="180">
+                </el-table-column>
+                <el-table-column
+                  prop="sound"
+                  label="声音">
+                </el-table-column>
+                <el-table-column
+                  label="操作">
+                    <template slot-scope="scope">
+                    <el-button @click="edite_shuziren(scope.row)" type="text" size="small">编辑</el-button>
+                    <el-button @click="del_shuziren(scope.row)" type="text" size="small">删除</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+                        <div style="flex: 1"></div>
+                        <el-pagination
+                          @size-change="handleSizeChange"
+                          @current-change="handleCurrentChange"
+                          :current-page="current_page_shuziren"
+                          :page-sizes="[10, 20, 30, 40]"
+                          :page-size="page_size_shuziren"
+                          layout="total, sizes, prev, pager, next, jumper"
+                          style="text-align: center"
+                          :total="shuziren_count">
+                        </el-pagination>
+
+
+            <el-dialog :title="is_edit_shuziren?'编辑':'新增'" :visible.sync="dialogFormVisible">
+              <el-form :model="shuziren">
+                <el-form-item label="名字：" >
+                  <el-input v-model="shuziren.name" ></el-input>
+                </el-form-item>
+                  <el-form-item label="声音：" >
+                  <el-input v-model="shuziren.sound" ></el-input>
+                </el-form-item>
+                  <el-form-item label="无动作视频：" >
+                  <el-upload
+                      class="avatar-uploader"
+                      action="/api/upload_file"
+                      :show-file-list="false"
+                      :on-success="handleVideoSuccess"
+                      :before-upload="beforeVideoUpload">
+                      <video controls v-if="shuziren.video" :src="shuziren.video" style="width: 60%" class="avatar"></video>
+                      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                </el-form-item>
+                   </el-form-item>
+                  <el-form-item label="有动作视频：" >
+                  <el-upload
+                      class="avatar-uploader"
+                      action="/api/upload_file"
+                      :show-file-list="false"
+                      :on-success="handleVideo2Success"
+                      :before-upload="beforeVideoUpload">
+                      <video controls v-if="shuziren.video2" :src="shuziren.video2" style="width: 60%" class="avatar"></video>
+                      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false;shuziren={}">取 消</el-button>
+                <el-button type="primary" @click="add_shuziren();">确 定</el-button>
+              </div>
+            </el-dialog>
+        </div>
+    </div>
+
+</body>
+<!-- 开发环境vue.js -->
+<script src="{{ url_for('static',filename='js/vue.js') }}"></script>
+<!-- 发行环境vue.js -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+<!-- 引入element-ui组件库 -->
+<!-- <script src="./js/element.js"></script> -->
+<script src="{{ url_for('static',filename='js/element.js') }}"></script>
+<!-- index.js -->
+<!-- <script src="./js/index.js"></script> -->
+<!-- <script src="./js/self-adaption.js"></script> -->
+
+<script src="{{ url_for('static',filename='js/index.js') }}"></script>
+<script src="{{ url_for('static',filename='js/self-adaption.js') }}"></script>
+
+</html>
