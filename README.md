@@ -245,7 +245,7 @@ rm -rf cache_data/*/mp3/* cache_data/*/mp3_temp/* cache_data/*/mp4/* cache_data/
 ├── config.json            # 控制器配置文件
 ├── system.conf            # 系统配置文件
 ├── requirements.txt       # 依赖包列表
-├── LICENSE                # GNU GPL v3 许可证
+├── LICENSE                # 许可证
 ├── README.md              # 项目说明文档
 ├── WebSocket.md           # WebSocket协议说明
 ├── ai_module/             # AI模块目录
